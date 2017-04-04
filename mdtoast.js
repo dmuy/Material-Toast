@@ -14,8 +14,8 @@
  	var MDToast = function (message, options) {
  		this.message = message;
  		this.options = options;
- 		this.toast_open_class = "md-toast-open";
- 		this.toast_data_name = "dmu-md-toast";
+ 		this.toastOpenClass = "md-toast-open";
+ 		this.toastDataName = "dmu-md-toast";
 
  		this.toast = $('<div class="md-toast load"></div>');
  		this.action = $('<span class="action"></span>');
@@ -26,9 +26,10 @@
 
  		if (options.interaction) {
  			var that = this;
- 			this.action.text(options.actionText).on('click', function () {
- 				if (options.action) options.action(that);
- 			});
+ 			this.action.text(options.actionText)
+	 			.on('click', function () {
+	 				if (options.action) options.action(that);
+	 			});
  			this.toast.append(this.action);
  		}
 
@@ -44,15 +45,17 @@
  				existing_toast = $('.md-toast'),
  				doc = $('body');
 
- 			that.toast.data(that.toast_data_name, that).appendTo(doc);
+ 			if (that.toast.is(':visible')) return;
+
+ 			that.toast.data(that.toastDataName, that).appendTo(doc);
 
  			setTimeout(function () {
  				that.toast.removeClass('load');
- 				doc.addClass(that.toast_open_class);
+ 				doc.addClass(that.toastOpenClass);
 
  				if (existing_toast.length > 0) {
  					existing_toast.each(function () {
- 						var ex_toast = $(this).data(that.toast_data_name);
+ 						var ex_toast = $(this).data(that.toastDataName);
 
  						ex_toast.hide();
  					});
@@ -73,7 +76,7 @@
  			clearTimeout(that.toast_timeout);
 
  			that.toast.addClass('load');
-            doc.removeClass(that.toast_open_class);
+            doc.removeClass(that.toastOpenClass);
             setTimeout(function () {
                 that.toast.remove();
                 if(callbacks && callbacks.hidden) callbacks.hidden();
