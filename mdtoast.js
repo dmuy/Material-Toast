@@ -15,6 +15,7 @@
  		this.message = message;
  		this.options = options;
  		this.toastOpenClass = "md-toast-open";
+ 		this.toastModalClass = "md-toast-modal";
  		this.toastDataName = "dmu-md-toast";
 
  		this.toast = $('<div class="md-toast load"></div>');
@@ -22,7 +23,7 @@
 
  		this.toast.addClass(options.type).text(message);
 
- 		this.toast_timeout = null;
+ 		this.toastTimeout = null;
 
  		if (options.interaction) {
  			var that = this;
@@ -33,7 +34,7 @@
  			this.toast.append(this.action);
  		}
 
- 		this.show();
+ 		if (!options.init) this.show();
  	}
 
  	MDToast.prototype = {
@@ -42,7 +43,7 @@
  		show : function () {
  			var that = this,
  				callbacks = that.options.callbacks,
- 				existing_toast = $('.md-toast'),
+ 				existingToast = $('.md-toast'),
  				doc = $('body');
 
  			if (that.toast.is(':visible')) return;
@@ -51,10 +52,9 @@
 
  			setTimeout(function () {
  				that.toast.removeClass('load');
- 				doc.addClass(that.toastOpenClass);
 
- 				if (existing_toast.length > 0) {
- 					existing_toast.each(function () {
+ 				if (existingToast.length > 0) {
+ 					existingToast.each(function () {
  						var ex_toast = $(this).data(that.toastDataName);
 
  						ex_toast.hide();
@@ -63,9 +63,17 @@
 
  				setTimeout(function () { if (callbacks && callbacks.shown) callbacks.shown(that); }, 300);
 
- 				that.toast_timeout = setTimeout(function () { that.hide(); }, that.options.duration);
+ 				if (that.options.interaction) {
+ 					if (that.options.interactionTimeout)
+ 						that.toastTimeout = setTimeout(function () { that.hide(); }, that.options.interactionTimeout);
+ 				} else if (that.options.duration){
+ 					that.toastTimeout = setTimeout(function () { that.hide(); }, that.options.duration);
+ 				}
 
- 				if(that.options.interaction) clearTimeout(that.toast_timeout);
+ 				
+ 				doc.addClass(that.toastOpenClass);
+
+ 				if (that.options.modal) doc.addClass(that.toastModalClass);
  			}, 0);
  		},
  		hide: function () {
@@ -73,10 +81,10 @@
  				callbacks = that.options.callbacks;
  				doc = $('body');
 
- 			clearTimeout(that.toast_timeout);
+ 			clearTimeout(that.toastTimeout);
 
  			that.toast.addClass('load');
-            doc.removeClass(that.toastOpenClass);
+            doc.removeClass(that.toastOpenClass).removeClass(that.toastModalClass);
             setTimeout(function () {
                 that.toast.remove();
                 if(callbacks && callbacks.hidden) callbacks.hidden();
@@ -89,9 +97,17 @@
  	}
 
  	$.mdtoast.defaults = {
-		duration: 5000,
-		type: 'default',
-		interaction: false
+ 		init: false,				// true if initalize only, false to automatically show toast after initialization.
+		duration: 5000,				// duration ot toast message.
+		type: 'default',			// type of toast to display (can also be info, error, warning, success)
+		modal: false,				// true if you want to disable pointer events when toast is shown
+		interaction: false,			// determines if toast requires user interaction to dismiss
+		interactionTimeout: null,	// if requires interaction, set the value for automatic dismissal of toast (e.g. 2000 -> 2 seconds)
+		actionText: 'OK',			// if requires interaction, set the value like 'UNDO'
+		action: function (data) {	// callback action for the user interaction, hides toast by default
+			data.hide();
+		},
+		callbacks: {}				// callback object for toast; contains hidden() and shown()
 	};
 
 	$.mdtoast.type = {

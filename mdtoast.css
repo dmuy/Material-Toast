@@ -16,6 +16,7 @@
 	padding: 16px;
     font-size: 14px;
     text-align: left;
+    pointer-events: auto;
     -moz-user-select: none;
     user-select: none;
     background-color: #263238;
@@ -48,15 +49,7 @@
         font-weight: 500;
     }
 
-/*body.md-toast-open:before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100002;
-}*/
+body.md-toast-modal { pointer-events: none; }
 
 @media (max-width: 767px) {
     .md-toast {
