@@ -16,14 +16,14 @@
  		this.options = options;
  		this.toastOpenClass = "md-toast-open";
  		this.toastModalClass = "md-toast-modal";
- 		this.toastDataName = "dmu-md-toast";
+ 		this.TOAST_DATA = "dmu-md-toast";
 
  		this.toast = $('<div class="md-toast load"></div>');
  		this.action = $('<span class="action"></span>');
 
- 		this.toast.addClass(options.type).text(message);
-
  		this.toastTimeout = null;
+
+ 		this.toast.addClass(options.type).append('<span class="mdt-message">' + message + '</span>');
 
  		if (options.interaction) {
  			var that = this;
@@ -48,14 +48,14 @@
 
  			if (that.toast.is(':visible')) return;
 
- 			that.toast.data(that.toastDataName, that).appendTo(doc);
+ 			that.toast.data(that.TOAST_DATA, that).appendTo(doc);
 
  			setTimeout(function () {
  				that.toast.removeClass('load');
 
  				if (existingToast.length > 0) {
  					existingToast.each(function () {
- 						var ex_toast = $(this).data(that.toastDataName);
+ 						var ex_toast = $(this).data(that.TOAST_DATA);
 
  						ex_toast.hide();
  					});
@@ -74,7 +74,7 @@
  				doc.addClass(that.toastOpenClass);
 
  				if (that.options.modal) doc.addClass(that.toastModalClass);
- 			}, 0);
+ 			}, 10);
  		},
  		hide: function () {
  			var that = this,
@@ -91,9 +91,9 @@
             }, 300);
  		}
  	}
-
+	
  	$.mdtoast = function(message, options) {
- 		return new MDToast(message, $.extend({}, $.mdtoast.defaults, null, !Array.isArray(options) && options));
+ 		return new MDToast(message, $.extend({}, $.mdtoast.defaults, null, typeof options === 'object' && options));
  	}
 
  	$.mdtoast.defaults = {
