@@ -77,4 +77,5 @@ body.md-toast-modal { pointer-events: none; }
             -moz-transform: translateY(100%);
             transform: translateY(100%);
         }
+}
 /* End Toast */
