@@ -12,18 +12,19 @@
  if (typeof jQuery === 'undefined') { throw new Error('MDToast: This plugin requires jQuery'); }
  +function ($) {
  	var MDToast = function (message, options) {
+ 		this.animateTime = 250;
  		this.message = message;
  		this.options = options;
  		this.toastOpenClass = "md-toast-open";
  		this.toastModalClass = "md-toast-modal";
  		this.TOAST_DATA = "dmu-md-toast";
 
- 		this.toast = $('<div class="md-toast load"></div>');
- 		this.action = $('<span class="action"></span>');
+ 		this.toast = $('<div class="md-toast mdt-load"></div>');
+ 		this.action = $('<button class="mdt-action"></button>');
 
  		this.toastTimeout = null;
 
- 		this.toast.addClass(options.type).append('<span class="mdt-message">' + message + '</span>');
+ 		this.toast.addClass(options.type).append('<div class="mdt-message">' + message + '</div>');
 
  		if (options.interaction) {
  			var that = this;
@@ -51,7 +52,7 @@
  			that.toast.data(that.TOAST_DATA, that).appendTo(doc);
 
  			setTimeout(function () {
- 				that.toast.removeClass('load');
+ 				that.toast.removeClass('mdt-load');
 
  				if (existingToast.length > 0) {
  					existingToast.each(function () {
@@ -61,7 +62,7 @@
  					});
  				}
 
- 				setTimeout(function () { if (callbacks && callbacks.shown) callbacks.shown(that); }, 300);
+ 				setTimeout(function () { if (callbacks && callbacks.shown) callbacks.shown(that); }, that.animateTime);
 
  				if (that.options.interaction) {
  					if (that.options.interactionTimeout)
@@ -83,12 +84,12 @@
 
  			clearTimeout(that.toastTimeout);
 
- 			that.toast.addClass('load');
+ 			that.toast.addClass('mdt-load');
             doc.removeClass(that.toastOpenClass).removeClass(that.toastModalClass);
             setTimeout(function () {
                 that.toast.remove();
                 if(callbacks && callbacks.hidden) callbacks.hidden();
-            }, 300);
+            }, that.animateTime);
  		}
  	}
 	
