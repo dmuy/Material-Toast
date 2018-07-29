@@ -1,5 +1,5 @@
 ﻿/* -- DO NOT REMOVE --
- * jQuery Material Toast plugin v1
+ * jQuery Material Toast plugin v1.1
  * 
  * Author: Dionlee Uy
  * Email: dionleeuy@gmail.com
@@ -15,16 +15,16 @@
  		this.animateTime = 250;
  		this.message = message;
  		this.options = options;
- 		this.toastOpenClass = "md-toast-open";
- 		this.toastModalClass = "md-toast-modal";
+ 		this.toastOpenClass = "mdtoast--open";
+ 		this.toastModalClass = "mdtoast--modal";
  		this.TOAST_DATA = "dmu-md-toast";
 
- 		this.toast = $('<div class="md-toast mdt-load"></div>');
- 		this.action = $('<button class="mdt-action"></button>');
-
+ 		this.toast = $('<div class="mdtoast mdt--load"></div>');
+ 		this.action = $('<button class="mdt-action" tabindex="0"></button>');
  		this.toastTimeout = null;
 
- 		this.toast.addClass(options.type).append('<div class="mdt-message">' + message + '</div>');
+ 		this.toast.addClass(options.type === 'default' ? '' : 'mdt--' + options.type)
+ 			.append('<div class="mdt-message">' + message + '</div>');
 
  		if (options.interaction) {
  			var that = this;
@@ -32,7 +32,7 @@
 	 			.on('click', function () {
 	 				if (options.action) options.action(that);
 	 			});
- 			this.toast.append(this.action);
+ 			this.toast.append(this.action).addClass('mdt--interactive');
  		}
 
  		if (!options.init) this.show();
@@ -42,17 +42,14 @@
  		constructor : MDToast,
 
  		show : function () {
- 			var that = this,
- 				callbacks = that.options.callbacks,
- 				existingToast = $('.md-toast'),
- 				doc = $('body');
+ 			var that = this, callbacks = that.options.callbacks, existingToast = $('.mdtoast'), doc = $('body');
 
  			if (that.toast.is(':visible')) return;
 
  			that.toast.data(that.TOAST_DATA, that).appendTo(doc);
 
  			setTimeout(function () {
- 				that.toast.removeClass('mdt-load');
+ 				that.toast.removeClass('mdt--load');
 
  				if (existingToast.length > 0) {
  					existingToast.each(function () {
@@ -78,13 +75,11 @@
  			}, 10);
  		},
  		hide: function () {
- 			var that = this,
- 				callbacks = that.options.callbacks;
- 				doc = $('body');
+ 			var that = this, callbacks = that.options.callbacks, doc = $('body');
 
  			clearTimeout(that.toastTimeout);
 
- 			that.toast.addClass('mdt-load');
+ 			that.toast.addClass('mdt--load');
             doc.removeClass(that.toastOpenClass).removeClass(that.toastModalClass);
             setTimeout(function () {
                 that.toast.remove();
@@ -118,5 +113,5 @@
 		SUCCESS : 'success'		
 	};
 
-	$.mdtoast.Constructor = MDToast;
+	// $.mdtoast.Constructor = MDToast;
  }(jQuery);
