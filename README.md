@@ -18,10 +18,16 @@ Include `mdtoast.css` and `mdtoast.js` in your html file:
 <link rel="stylesheet" type="text/css" href="mdtoast.css">
 <script type="text/javascript" src="mdtoast.js"></script>
 ```
+Or use this CDN:
+```html
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.min.js"></script>
+```
 
 Call `mdtoast()` in your script tag:
 ```javascript
-mdtoast('This is a toast message.'); // Initializes and shows default toast or with the 'new' keyword - i.e new mdtoast(...)
+// Initializes and shows default toast or with the 'new' keyword - i.e new mdtoast(...)
+mdtoast('This is a toast message.');
 ```
 
 ## Options
