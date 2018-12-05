@@ -39,7 +39,7 @@
 
 			var _ = this, args = arguments;
 
-			_.animateTime = 250;
+			_.animateTime = 230;
 	 		_.message = args[0];
 	 		_.options = extendObj(defaults, args[1]);;
 	 		_.toastOpenClass = "mdtoast--open";
@@ -158,7 +158,7 @@
 
 			if (_.options.modal) 
 				doc.classList.add(_.toastModalClass);
-		}, 10);
+		}, 15);
 	}
 
 	/* Hides toast */

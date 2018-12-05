@@ -48,7 +48,7 @@
         transition: transform 0.23s 0ms cubic-bezier(0.4, 0, 1, 1), -webkit-transform 0.23s 0ms cubic-bezier(0.4, 0, 1, 1);
     }
     .mdtoast.mdt--interactive { padding-right: 16px; }
-    .mdtoast.mdt--info { background-color: #1976d2; }
+    .mdtoast.mdt--info { background-color: #1565c0; }
     .mdtoast.mdt--error { background-color: #e53935; }
     .mdtoast.mdt--warning { background-color: #ef6c00; }
     .mdtoast.mdt--success { background-color: #2e7d32; }
@@ -95,6 +95,14 @@
         .mdtoast.mdt--load .mdt-action { opacity: 0; }
         .mdtoast .mdt-action:focus, .mdtoast .mdt-action:hover { background-color: #3e3e3e; }
         .mdtoast .mdt-action:active { background-color: #4e4e4e; }
+        .mdt--info .mdt-action:focus, .mdt--info .mdt-action:hover { background-color: #1976d2; }
+        .mdt--info .mdt-action:active { background-color: #1e88e5; }
+        .mdt--error .mdt-action:focus, .mdt--error .mdt-action:hover { background-color: #f44336; }
+        .mdt--error .mdt-action:active { background-color: #ef5350; }
+        .mdt--warning .mdt-action:focus, .mdt--warning .mdt-action:hover { background-color: #f57c00; }
+        .mdt--warning .mdt-action:active { background-color: #fb8c00; }
+        .mdt--success .mdt-action:focus, .mdt--success .mdt-action:hover { background-color: #388e3c; }
+        .mdt--success .mdt-action:active { background-color: #43a047; }
 
 body.mdtoast--modal { 
 	pointer-events: none;
