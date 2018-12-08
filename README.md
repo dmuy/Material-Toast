@@ -28,13 +28,13 @@ mdtoast('This is a toast message.');
 ### CDN
 Use the following if you don't want to host the `js` and `css` files:
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.js
 ```
 Minified version:
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.min.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@2.0/mdtoast.min.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.js
 ```
 
 [Learn more about the CDN](https://www.jsdelivr.com/features#gh)
