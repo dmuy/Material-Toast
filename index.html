@@ -1,0 +1,38 @@
+---
+title: dmuy - Material-Toast
+layout: default
+---
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.css">
+<style type="text/css">
+</style>
+<h2>Demo</h2>
+<div class="container">
+    <p>Click the buttons below to show the toast:</p>
+    <p id="buttons-wrapper"><button class="btn btn-dark" type="button" id="trigger1">Modal</button><button class="btn btn-secondary" type="button" id="trigger2">User interaction</button><button class="btn btn-info" type="button" id="trigger3">Info&nbsp;</button><button class="btn btn-danger"
+            type="button" id="trigger4">Error</button><button class="btn btn-warning" type="button" id="trigger5">Warning</button><button class="btn btn-success" type="button" id="trigger6">Success</button></p>
+</div>
+<br>
+
+{% capture docu_file %}{% include_relative README.md %}{% endcapture %}
+{{ docu_file | markdownify }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+        var myToast = mdtoast('This is a modal toast', { init: true, modal: true });
+        $('#trigger1').click(function() { myToast.show(); });
+        $('#trigger2').click(function() { mdtoast('Message archived', {
+            interaction: true, actionText: 'UNDO', action: function () {
+                alert('Undo clicked!');
+                this.hide();
+            }
+        }); });
+        $('#trigger3').click(function() { mdtoast('An info toast', { type: 'info' }); });
+        $('#trigger4').click(function() { mdtoast('An error toast', { duration: 10000, type: 'error' }); });
+        $('#trigger5').click(function() { mdtoast('A warning toast', { duration: 10000, type: mdtoast.WARNING }); });
+        $('#trigger6').click(function() { mdtoast('A success toast', { duration: 10000, type: mdtoast.SUCCESS }); });
+    });
+</script>
