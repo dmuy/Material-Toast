@@ -1,7 +1,7 @@
 # Material-Toast
 A simple plugin to display a material concept toast (alert message).
 
-**[DEMO](https://dmuy.github.io/mdtoast/)**
+**[DEMO](https://dmuy.github.io/Material-Toast/)**
 
 Larger screen layout:
 
