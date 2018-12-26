@@ -65,9 +65,9 @@ Specifying toast action:
 mdtoast('Message archived.', {
   type: 'success', 
   interaction: true, actionText: 'UNDO', 
-  action: function(t){
+  action: function(){
     //TODO: Undo codes here...
-    t.hide(); // t is the toast object returned by the callback.
+    this.hide(); // this is the toast instance
   }
 });
 ```
