@@ -125,18 +125,28 @@
     });
 
     /* Shows toast */
-    mdtoast.prototype.show = function () {
+    mdtoast.prototype.show = function (callback) {
         var _ = this, callbacks = _.options.callbacks, exToast = document.getElementsByClassName('mdtoast'), doc = document.body;
 
         if (doc.contains(_.toast)) return;
 
         if (_.options.init) buildUI.apply(this);
 
-        for (var i = exToast.length - 1; i >= 0; i--) {
-            exToast[i].mdtoast.hide();
+        if (exToast.length > 0) {
+	        for (var i = exToast.length - 1; i >= 0; i--) {
+	            exToast[i].mdtoast.hide(function () {
+	            	if (i < 0) {
+				        showToast(_, doc, callbacks, callback);
+	            	}
+	            });
+	        }
+        } else {
+        	showToast(_, doc, callbacks, callback);
         }
+    }
 
-        doc.appendChild(_.docFrag);
+    function showToast(_, doc, callbacks, callback) {
+    	doc.appendChild(_.docFrag);
 
         setTimeout(function () {
             _.toast.classList.remove('mdt--load');
@@ -144,7 +154,7 @@
             setTimeout(function () {
                 if (callbacks && callbacks.shown) callbacks.shown.apply(_);
 
-                _.toast.focus();
+                if (callback && typeof callback === 'function') callback.apply(_);
             }, _.animateTime);
 
             if (_.options.interaction) {
@@ -161,7 +171,7 @@
     }
 
     /* Hides toast */
-    mdtoast.prototype.hide = function () {
+    mdtoast.prototype.hide = function (callback) {
         var _ = this, callbacks = _.options.callbacks, doc = document.body;
 
         clearTimeout(_.timeout);
@@ -172,6 +182,8 @@
         setTimeout(function () {
             doc.removeChild(_.toast);
             if (callbacks && callbacks.hidden) callbacks.hidden.apply(_);
+
+            if (callback && typeof callback === 'function') callback.apply(_);
         }, _.animateTime);
     }
 
