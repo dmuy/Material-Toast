@@ -1,0 +1,20 @@
+{
+    "name": "@dmuy/toast",
+    "version": "2.0.1",
+    "description": "A simple plugin to display a material concept toast or alert message.",
+    "keywords": [
+        "material-toast", "alert-message", "toast-message", "toast-plugin", "alert-plugin"
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Dionlee Uy",
+        "email": "dionleeuy@gmail.com"
+    },
+    "repository": "git://github.com/dmuy/Material-Toast.git",
+    "homepage": "https://dmuy.github.io/Material-Toast/",
+    "main": "mdtoast.js",
+    "files": [
+        "mdtoast.js",
+        "mdtoast.css"
+    ]
+}

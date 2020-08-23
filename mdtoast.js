@@ -6,15 +6,14 @@
  * Email: dionleeuy@gmail.com
  */
 (function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
+    if (typeof exports === 'object' && typeof module === 'object') {
+        module.exports = factory(root);
+    } else if (typeof define === 'function' && define.amd) {
         define('mdtoast', [], factory(root));
     } else if (typeof exports === 'object') {
-        // CommonJS
-        module.exports = factory(root);
+        exports['mdtoast'] = factory(root);
     } else {
-        // Browser globals
-        root.mdtoast = factory(root);
+        root['mdtoast'] = factory(root);
     }
 })(typeof global !== 'undefined' ? global : this.window || this.global, function (root) {
     'use strict';
@@ -32,7 +31,7 @@
                 this.hide();
             },
             callbacks: {}				// callback object for toast; contains hidden() and shown()
-        }, openClass = "mdtoast--open", modalClass = "mdtoast--modal", 
+        }, openClass = "mdtoast--open", modalClass = "mdtoast--modal",
         mdtoast = function () {
 
             if (!(this instanceof mdtoast))
@@ -48,23 +47,6 @@
             if (!_.options.init) buildUI.apply(_);
 
             return _;
-        }, setAttributes = function (el, attrs) {
-            /* src: http://jsfiddle.net/andr3ww/pvuzgfg6/13/ */
-            var recursiveSet = function (at, set) {
-                for (var prop in at) {
-                    var a = at[prop];
-                    if ((typeof a === 'object' && a !== null) && a.dataset === undefined && a[0] === undefined) { recursiveSet(a, set[prop]); }
-                    else { set[prop] = a; }
-                }
-            }
-            recursiveSet(attrs, el);
-        }, removeSpace = function (str) {
-            return str.replace(/\s+/g, '');
-        }, inArray = function (arr, item) {
-            if (!arr) return false;
-            if (arr[0] === undefined) return false;
-
-            return arr.filter(function (x) { return x === item }).length > 0
         }, buildUI = function () {
 
             if (!supports) return;
@@ -124,7 +106,10 @@
         SUCCESS: { value: 'success' }
     });
 
-    /* Shows toast */
+    /**
+     * Shows toast
+     * @param {Function} callback Callback function after show
+     */
     mdtoast.prototype.show = function (callback) {
         var _ = this, callbacks = _.options.callbacks, exToast = document.getElementsByClassName('mdtoast'), doc = document.body;
 
@@ -133,20 +118,27 @@
         if (_.options.init) buildUI.apply(this);
 
         if (exToast.length > 0) {
-	        for (var i = exToast.length - 1; i >= 0; i--) {
-	            exToast[i].mdtoast.hide(function () {
-	            	if (i < 0) {
-				        showToast(_, doc, callbacks, callback);
-	            	}
-	            });
-	        }
+            for (var i = exToast.length - 1; i >= 0; i--) {
+                exToast[i].mdtoast.hide(function () {
+                    if (i < 0) {
+                        showToast(_, doc, callbacks, callback);
+                    }
+                });
+            }
         } else {
-        	showToast(_, doc, callbacks, callback);
+            showToast(_, doc, callbacks, callback);
         }
     }
 
+    /**
+     * Show toast wrapper
+     * @param {Object} _ Context
+     * @param {Element} doc Document body
+     * @param {Object} callbacks Callback functions wrapper
+     * @param {Function} callback Callback function after show
+     */
     function showToast(_, doc, callbacks, callback) {
-    	doc.appendChild(_.docFrag);
+        doc.appendChild(_.docFrag);
 
         setTimeout(function () {
             _.toast.classList.remove('mdt--load');
@@ -170,7 +162,10 @@
         }, 15);
     }
 
-    /* Hides toast */
+    /**
+     * Hides toast
+     * @param {Function} callback Callback function after hide
+     */
     mdtoast.prototype.hide = function (callback) {
         var _ = this, callbacks = _.options.callbacks, doc = document.body;
 
@@ -187,7 +182,7 @@
         }, _.animateTime);
     }
 
-	/*
+	/**
 	* Vanilla JavaScript version of jQuery.extend()
 	* src: https://gomakethings.com/vanilla-javascript-version-of-jquery-extend/
 	*/
