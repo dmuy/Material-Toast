@@ -1,29 +1,38 @@
-## How to use
-Include `mdtoast.css` and `mdtoast.js` in your html file:
-```html
-<link rel="stylesheet" type="text/css" href="mdtoast.css">
-<script type="text/javascript" src="mdtoast.js"></script>
+## Installation
+### NPM
+Install via npm:
+```
+npm i @dmuy/toast
 ```
 
-Call `mdtoast()` in your script tag:
+Include in your app
 ```javascript
-// Initializes and shows default toast or with the 'new' keyword - i.e new mdtoast(...)
-mdtoast('This is a toast message.');
+import '@dmuy/toast/mdtoast.css'
+import mdtoast from '@dmuy/toast'
 ```
 
 ### CDN
 Use the following if you don't want to host the `js` and `css` files:
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.js
 ```
 Minified version:
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast/mdtoast.min.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.js
 ```
+***Note: Replace `{version}` with the version you want to use.***
 
 [Learn more about the CDN](https://www.jsdelivr.com/features#gh)
+
+### Local Copy
+Copy `mdtoast.css` and `mdtoast.js` and include in your app:
+```html
+<link rel="stylesheet" type="text/css" href="{path-to}/mdtoast.css">
+<script type="text/javascript" src="{path-to}/mdtoast.js"></script>
+```
+***Note: Replace `{path-to}` with the absolute or relative path to where you copied the css and js files.***
 
 ## Options
 You can add options when calling `mdtoast()` to fit your needs. Below are the options you can use:
@@ -40,7 +49,14 @@ You can add options when calling `mdtoast()` to fit your needs. Below are the op
 | action      | `hide()`     | This will be the function to be called when the user clicks the action text. The default calls the toast's `hide()` method. |
 | callbacks   | `{}`         | You can place the callbacks `hidden()` and `shown()` in this option if you have some things to do after the toast is shown or hidden. |
 
-### Usage sample
+## Usage
+Call `mdtoast()`:
+```javascript
+// Initializes and shows default toast or with the 'new' keyword - i.e new mdtoast(...)
+mdtoast('This is a toast message.');
+```
+
+### Using configurations
 Below is an example of storing your toast in a variable for future reuse:
 ```javascript
 // Initializes default toast with duration of 10 seconds (this will not show the toast since init is set to true)
