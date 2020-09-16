@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Material Toast Plugin</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../dist/mdtoast.css">
+	<style type="text/css">
+		html, body {
+			min-height: 100%;
+			background-color: #f5f5f5;
+		}
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		}
+		.stats {
+			margin-bottom: 12px;
+		}
+		.stats a { text-decoration: none; }
+		.stats a + a { margin-left: 8px; }
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Material-Toast</h1>
+		<div class="stats">
+			<a href="https://www.npmjs.com/package/@dmuy/toast" rel="noreferrer" target="_blank">
+				<img alt="npm" src="https://img.shields.io/npm/dt/@dmuy/toast?style=flat-square">
+			</a>
+			<a href="https://github.com/dmuy/Material-Toast" rel="noreferrer" target="_blank">
+				<img src="https://img.shields.io/github/stars/dmuy/Material-Toast?style=social" alt="stars">
+			</a>
+		</div>
+		<div id="triggers">
+			<button id="trigger1">Basic</button>
+			<button id="trigger2">User Interaction</button>
+			<button id="trigger3">Info Toast</button>
+			<button id="trigger4">Error Toast</button>
+			<button id="trigger5">Warning Toast</button>
+			<button id="trigger6">Success Toast</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="../dist/mdtoast.js"></script>
+	<script type="text/javascript">
+	window.onload = function() {
+		var myToast = new mdtoast('Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam atque reiciendis a hic possimus inventore id fuga non, sit voluptatum quaerat magnam dolorum quos eligendi amet perferendis voluptatibus tenetur animi?', { init: true, duration: false }),
+			evtHandler = function (e) {
+				if (e.target.id === 'trigger1') {
+					myToast.show()
+				} else if (e.target.id === 'trigger2') {
+					mdtoast('Message archived', {
+						interaction: true, actionText: 'UNDO', action: function () {
+							console.log(this);
+							alert('Undo clicked!');
+							this.hide();
+						}
+					})
+				} else if (e.target.id === 'trigger3') {
+					mdtoast('An info toast', { type: mdtoast.INFO, interaction: true, interactionTimeout: 3000 })
+				} else if (e.target.id === 'trigger4') {
+					mdtoast('An error toast', { duration: 10000, type: mdtoast.ERROR, interaction: true })
+				} else if (e.target.id === 'trigger5') {
+					mdtoast('A warning toast', { duration: 10000, type: mdtoast.WARNING, interaction: true })
+				} else if (e.target.id === 'trigger6') {
+					mdtoast('A success toast', { duration: 10000, type: mdtoast.SUCCESS, interaction: true })
+				}
+			}
+
+		var triggers = document.querySelectorAll('#trigger1, #trigger2, #trigger3, #trigger4, #trigger5, #trigger6')
+		
+		for (var i = 0; i < triggers.length; i++) {
+			triggers[i].addEventListener('click', evtHandler)
+		}
+	}
+	</script>
+</body>
+</html>

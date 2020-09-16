@@ -41,7 +41,7 @@ https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.js
 [Learn more about the CDN](https://www.jsdelivr.com/features#gh)
 
 ### Local Copy
-Copy `mdtoast.css` and `mdtoast.js` and include in your app:
+Copy `mdtoast.css` and `mdtoast.js` (or the minified versions `*.min.js` and `*.min.css`) in the `dist` folder and include in your app:
 ```html
 <link rel="stylesheet" type="text/css" href="{path-to}/mdtoast.css">
 <script type="text/javascript" src="{path-to}/mdtoast.js"></script>

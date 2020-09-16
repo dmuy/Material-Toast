@@ -1,0 +1,13 @@
+{
+    "presets": [
+        [
+            "@babel/env", 
+            {
+                "modules": false,
+                "targets": {
+                    "browsers": "> 0.5%, ie >= 11"
+                }
+            }
+        ]
+    ]
+}
