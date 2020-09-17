@@ -22,19 +22,21 @@
     ],
     "scripts": {
         "build": "npm run compile && npm run minify",
-        "compile": "rollup --config rollup.config.js",
-        "minify": "cross-env NODE_ENV=production rollup --config rollup.config.js"
+        "compile": "rollup --config rollup.config.js && npm run compile-css",
+        "compile-css": "node-sass -x --output-style=expanded src/mdtoast.scss -o=dist && postcss --no-map -u autoprefixer -r dist/mdtoast.css",
+        "minify": "uglifyjs dist/mdtoast.js -c -m -o dist/mdtoast.min.js && npm run minify-css",
+        "minify-css": "postcss dist/mdtoast.css --no-map -o dist/mdtoast.min.css --config postcss.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
         "@babel/preset-env": "^7.11.5",
         "@rollup/plugin-babel": "^5.2.1",
         "@rollup/plugin-node-resolve": "^9.0.0",
-        "autoprefixer": "^10.0.0",
-        "cross-env": "^7.0.2",
-        "postcss": "^8.0.3",
+        "autoprefixer": "^9.8.6",
+        "cssnano": "^4.1.10",
+        "node-sass": "^4.14.1",
+        "postcss-cli": "^7.1.2",
         "rollup": "^2.27.0",
-        "rollup-plugin-scss": "^2.6.0",
-        "rollup-plugin-uglify": "^6.0.4"
+        "uglify-js": "^3.10.4"
     }
 }

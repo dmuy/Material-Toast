@@ -1,5 +1,4 @@
-﻿import './mdtoast.scss'
-import { extend, buildUI, showToast } from './helpers'
+﻿import { extend, buildUI, showToast } from './helpers'
 import vars from './vars'
 
 /**

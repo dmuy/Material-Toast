@@ -21,7 +21,7 @@ npm i @dmuy/toast
 
 Include in your app
 ```javascript
-import '@dmuy/toast/mdtoast.css'
+import '@dmuy/toast/dist/mdtoast.css'
 import mdtoast from '@dmuy/toast'
 ```
 

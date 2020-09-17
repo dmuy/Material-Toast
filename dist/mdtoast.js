@@ -1,5 +1,5 @@
 /*!Don't remove this!
- * Material Toast plugin v2.0
+ * Material-Toast plugin v2.0
  * https://github.com/dmuy/Material-Toast
  * 
  * Author: Dionlee Uy
