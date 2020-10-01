@@ -1,6 +1,6 @@
 {
     "name": "@dmuy/toast",
-    "version": "2.0.2-rc",
+    "version": "2.0.2",
     "description": "A simple plugin to display a material concept toast or alert message.",
     "keywords": [
         "material-toast",
@@ -18,7 +18,8 @@
     "homepage": "https://dmuy.github.io/Material-Toast/",
     "main": "dist/mdtoast.js",
     "files": [
-        "dist"
+        "dist",
+        "vue-toast.js"
     ],
     "scripts": {
         "build": "npm run compile && npm run minify",
