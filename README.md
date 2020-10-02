@@ -27,18 +27,19 @@ import mdtoast from '@dmuy/toast'
 
 ### CDN
 Use the following if you don't want to host the `js` and `css` files:
+#### [UNPKG](https://unpkg.com/)
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.js
+https://unpkg.com/@dmuy/toast@{version}/dist/mdtoast.css
+https://unpkg.com/@dmuy/toast@{version}/dist/mdtoast.js
 ```
-Minified version:
+#### [jsDelivr](https://www.jsdelivr.com/features#gh)
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/dist/mdtoast.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/dist/mdtoast.js
 ```
-***Note: Replace `{version}` with the version you want to use.***
+For production, use the minified version by adding `.min` to the file name (i.e. `mdtoast.min.js`)
 
-[Learn more about the CDN](https://www.jsdelivr.com/features#gh)
+***Note: Replace `{version}` with the version you want to use.***
 
 ### Local Copy
 Copy `mdtoast.css` and `mdtoast.js` (or the minified versions `*.min.js` and `*.min.css`) in the `dist` folder and include in your app:
