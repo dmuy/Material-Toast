@@ -105,10 +105,43 @@ mdtoast('Message archived.', {
 });
 ```
 
+### Vue
+In your `app.js`
+```javascript
+import Vue from 'vue'
+import vueToast from '@dmuy/toast/vue-toast'
+
+Vue.use(vueToast)
+```
+
+#### Nuxt
+In the `plugins` folder, create `mdtoast.js` and paste the script above.
+
+In `nuxt.config.js`
+```javascript
+export default {
+  plugins: [
+    '@/plugins/mdtoast.js'
+  ]
+}
+```
+
+#### Usage
+In your components or pages, you can access the `mdtoast()` as `this.$mdtoast()`
+```javascript
+// script
+export default {
+  mounted() {
+    // default
+    this.$mdtoast('This is a toast message!')
+    // with options
+    this.$mdtoast('Message archived', { type: 'success' })
+  }
+}
+```
+
 ### Remember
 Comment or remove the line shown below in the css file if you already have a link to the Roboto font.
 ```css
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 ```
-
-Older browsers may need the [classList polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) which extends classList support back to IE8 (natively, it’s IE10+).
