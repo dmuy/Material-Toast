@@ -1,6 +1,8 @@
 # Material-Toast
 [![vanilla js](https://img.shields.io/npm/dt/@dmuy/toast?style=flat-square)](https://www.npmjs.com/package/@dmuy/toast)
 
+[![Buy Me A Coffee](https://i.imgur.com/PbiWKn8.png)](https://www.buymeacoffee.com/dmuy)
+
 A simple plugin to display a material concept toast (alert message).
 
 **[DEMO](https://dmuy.github.io/Material-Toast/)**
