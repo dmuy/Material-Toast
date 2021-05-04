@@ -7,27 +7,28 @@ npm i @dmuy/toast
 
 Include in your app
 ```javascript
-import '@dmuy/toast/mdtoast.css'
+import '@dmuy/toast/dist/mdtoast.css'
 import mdtoast from '@dmuy/toast'
 ```
 
 ### CDN
 Use the following if you don't want to host the `js` and `css` files:
+#### [UNPKG](https://unpkg.com/)
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.js
+https://unpkg.com/@dmuy/toast@{version}/dist/mdtoast.css
+https://unpkg.com/@dmuy/toast@{version}/dist/mdtoast.js
 ```
-Minified version:
+#### [jsDelivr](https://www.jsdelivr.com/features#gh)
 ```
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.css
-https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/mdtoast.min.js
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/dist/mdtoast.css
+https://cdn.jsdelivr.net/gh/dmuy/Material-Toast@{version}/dist/mdtoast.js
 ```
+For production, use the minified version by adding `.min` to the file name (i.e. `mdtoast.min.js`)
+
 ***Note: Replace `{version}` with the version you want to use.***
 
-[Learn more about the CDN](https://www.jsdelivr.com/features#gh)
-
 ### Local Copy
-Copy `mdtoast.css` and `mdtoast.js` and include in your app:
+Copy `mdtoast.css` and `mdtoast.js` (or the minified versions `*.min.js` and `*.min.css`) in the `dist` folder and include in your app:
 ```html
 <link rel="stylesheet" type="text/css" href="{path-to}/mdtoast.css">
 <script type="text/javascript" src="{path-to}/mdtoast.js"></script>
@@ -88,10 +89,43 @@ mdtoast('Message archived.', {
 });
 ```
 
+### Vue
+In your `app.js`
+```javascript
+import Vue from 'vue'
+import vueToast from '@dmuy/toast/vue-toast'
+
+Vue.use(vueToast)
+```
+
+#### Nuxt
+In the `plugins` folder, create `mdtoast.js` and paste the script above.
+
+In `nuxt.config.js`
+```javascript
+export default {
+  plugins: [
+    '@/plugins/mdtoast.js'
+  ]
+}
+```
+
+#### Usage
+In your components or pages, you can access the `mdtoast()` as `this.$mdtoast()`
+```javascript
+// script
+export default {
+  mounted() {
+    // default
+    this.$mdtoast('This is a toast message!')
+    // with options
+    this.$mdtoast('Message archived', { type: 'success' })
+  }
+}
+```
+
 ### Remember
 Comment or remove the line shown below in the css file if you already have a link to the Roboto font.
 ```css
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 ```
-
-Older browsers may need the [classList polyfill](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList) which extends classList support back to IE8 (natively, it’s IE10+).
