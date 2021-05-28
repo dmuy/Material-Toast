@@ -29,15 +29,16 @@
         "minify-css": "postcss dist/mdtoast.css --no-map -o dist/mdtoast.min.css --config postcss.config.js"
     },
     "devDependencies": {
-        "@babel/core": "^7.11.6",
-        "@babel/preset-env": "^7.11.5",
-        "@rollup/plugin-babel": "^5.2.1",
+        "@babel/core": "^7.14.3",
+        "@babel/preset-env": "^7.14.4",
+        "@rollup/plugin-babel": "^5.3.0",
         "@rollup/plugin-node-resolve": "^9.0.0",
         "autoprefixer": "^9.8.6",
-        "cssnano": "^4.1.10",
+        "cssnano": "^4.1.11",
         "node-sass": "^4.14.1",
         "postcss-cli": "^7.1.2",
-        "rollup": "^2.27.0",
-        "uglify-js": "^3.10.4"
-    }
+        "rollup": "^2.50.3",
+        "uglify-js": "^3.13.8"
+    },
+    "dependencies": {}
 }
