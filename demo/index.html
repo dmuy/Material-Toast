@@ -57,13 +57,13 @@
 						}
 					})
 				} else if (e.target.id === 'trigger3') {
-					mdtoast('An info toast', { type: mdtoast.INFO, interaction: true, interactionTimeout: 3000 })
+					mdtoast.info('An info toast')
 				} else if (e.target.id === 'trigger4') {
-					mdtoast('An error toast', { duration: 10000, type: mdtoast.ERROR, interaction: true })
+					mdtoast.error('An error toast', { interactionTimeout: 10000, interaction: true })
 				} else if (e.target.id === 'trigger5') {
-					mdtoast('A warning toast', { duration: 10000, type: mdtoast.WARNING, interaction: true })
+					mdtoast.warning('A warning toast', { interactionTimeout: 10000, interaction: true })
 				} else if (e.target.id === 'trigger6') {
-					mdtoast('A success toast', { duration: 10000, type: mdtoast.SUCCESS, interaction: true })
+					mdtoast.success('A success toast')
 				}
 			}
 

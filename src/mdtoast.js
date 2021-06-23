@@ -74,9 +74,28 @@ class MDToast {
  * @param {Function} options.callbacks.shown Callback function after toast is displayed
  * @param {Function} options.callbacks.hidden Callback function after toast is dismissed
  */
-function mdtoast (message, options) {
-    if (! options) options = {}
+function mdtoast (message, options = {}) {
     return new MDToast(message, options)
+}
+
+// info toast wrapper
+mdtoast.info = function (message, options = {}) {
+    return mdtoast(message, extend(true, options, { type: 'info' }))
+}
+
+// error toast wrapper
+mdtoast.error = function (message, options = {}) {
+    return mdtoast(message, extend(true, options, { type: 'error' }))
+}
+
+// warning toast wrapper
+mdtoast.warning = function (message, options = {}) {
+    return mdtoast(message, extend(true, options, { type: 'warning' }))
+}
+
+// success toast wrapper
+mdtoast.success = function (message, options = {}) {
+    return mdtoast(message, extend(true, options, { type: 'success' }))
 }
 
 Object.defineProperties(mdtoast, {

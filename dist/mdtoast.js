@@ -269,10 +269,42 @@
    */
 
 
-  function mdtoast(message, options) {
-    if (!options) options = {};
+  function mdtoast(message) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return new MDToast(message, options);
-  }
+  } // info toast wrapper
+
+
+  mdtoast.info = function (message) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return mdtoast(message, extend(true, options, {
+      type: 'info'
+    }));
+  }; // error toast wrapper
+
+
+  mdtoast.error = function (message) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return mdtoast(message, extend(true, options, {
+      type: 'error'
+    }));
+  }; // warning toast wrapper
+
+
+  mdtoast.warning = function (message) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return mdtoast(message, extend(true, options, {
+      type: 'warning'
+    }));
+  }; // success toast wrapper
+
+
+  mdtoast.success = function (message) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return mdtoast(message, extend(true, options, {
+      type: 'success'
+    }));
+  };
 
   Object.defineProperties(mdtoast, {
     INFO: {
