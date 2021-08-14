@@ -5,12 +5,14 @@ import vars from './vars'
  * Toast class
  */
 class MDToast {
+    static _defaults = null;
+
     constructor(message, options) {
         var args = arguments
 
         this.animateTime = 230
         this.message = args[0]
-        this.options = extend(true, vars.defaults, args[1])
+        this.options = extend(true, MDToast._defaults || vars.defaults, args[1])
         this.timeout = null
 
         if (!this.options.init)
@@ -65,6 +67,7 @@ class MDToast {
  * @param {boolean} options.init=false Determines if toast is initialize-only (meaning toast will not show unless `show()` is called
  * @param {number} options.duration=5000 Determines the toast display duration (in milliseconds)
  * @param {('info' | 'warning' | 'success' | 'error')} options.type Determines the type of toast to display
+ * @param {('top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right')} options.position Determines the display position of the toast
  * @param {boolean} options.modal=false Determines if toast is modal (pointer events on other elements will be disabled)
  * @param {boolean} options.interaction=false Determines if toast requires user interaction to dismiss or has some sort of user interaction button to click
  * @param {number} options.interactionTimeout=null Determines the toast duration (timeout to dismiss) if interaction is set to `true` - this overrides the duration option if interaction is set to `true`
@@ -96,6 +99,11 @@ mdtoast.warning = function (message, options = {}) {
 // success toast wrapper
 mdtoast.success = function (message, options = {}) {
     return mdtoast(message, extend(true, options, { type: 'success' }))
+}
+
+// set defaults
+mdtoast.defaults = function (configs) {
+    MDToast._defaults = extend(true, vars.defaults, configs)
 }
 
 Object.defineProperties(mdtoast, {

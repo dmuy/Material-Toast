@@ -79,6 +79,8 @@ export function buildUI () {
     if (_options.type !== 'default')
         _.toast.classList.add('mdt--' + _options.type)
 
+    _.toast.setAttribute('data-position', _options.position)
+
     content = createElem('div', 'mdt-message', _.message, true)
     _.toast.appendChild(content)
 

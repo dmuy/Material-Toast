@@ -6,6 +6,8 @@ export default {
         duration: 5000,
         // type of toast to display (can also be info, error, warning, success)
         type: 'default',
+        // toast position for larger screens (smaller screens will only display top or bottom)
+        position: 'bottom left',
         // true if you want to disable pointer events when toast is shown
         modal: false,
         // determines if toast requires user interaction to dismiss

@@ -40,30 +40,49 @@
 			<button id="trigger5">Warning Toast</button>
 			<button id="trigger6">Success Toast</button>
 		</div>
+		<br>
+		Position:
+		<select id="toast-position">
+			<optgroup label="Top">	
+				<option>top left</option>
+				<option>top center</option>
+				<option>top right</option>
+			</optgroup>
+			<optgroup label="Bottom">	
+				<option>bottom left</option>
+				<option>bottom center</option>
+				<option>bottom right</option>
+			</optgroup>
+		</select>
 	</div>
 	<script type="text/javascript" src="../dist/mdtoast.js"></script>
 	<script type="text/javascript">
 	window.onload = function() {
-		var myToast = new mdtoast('Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam atque reiciendis a hic possimus inventore id fuga non, sit voluptatum quaerat magnam dolorum quos eligendi amet perferendis voluptatibus tenetur animi?', { init: true, duration: false }),
-			evtHandler = function (e) {
+		// mdtoast.defaults({ position: 'top center' });
+
+		function getPosition() { return document.querySelector('#toast-position').value }
+
+		var evtHandler = function (e) {
 				if (e.target.id === 'trigger1') {
-					myToast.show()
+					mdtoast('Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam atque reiciendis a hic possimus inventore id fuga non, sit voluptatum quaerat magnam dolorum quos eligendi amet perferendis voluptatibus tenetur animi?', { duration: false, position: getPosition() })
 				} else if (e.target.id === 'trigger2') {
 					mdtoast('Message archived', {
-						interaction: true, actionText: 'UNDO', action: function () {
+						interaction: true, actionText: 'UNDO', 
+						position: getPosition(),
+						action: function () {
 							console.log(this);
 							alert('Undo clicked!');
 							this.hide();
 						}
 					})
 				} else if (e.target.id === 'trigger3') {
-					mdtoast.info('An info toast')
+					mdtoast.info('An info toast', { position: getPosition() })
 				} else if (e.target.id === 'trigger4') {
-					mdtoast.error('An error toast', { interactionTimeout: 10000, interaction: true })
+					mdtoast.error('An error toast', { interactionTimeout: 10000, interaction: true, position: getPosition() })
 				} else if (e.target.id === 'trigger5') {
-					mdtoast.warning('A warning toast', { interactionTimeout: 10000, interaction: true })
+					mdtoast.warning('A warning toast', { interactionTimeout: 10000, interaction: true, position: getPosition() })
 				} else if (e.target.id === 'trigger6') {
-					mdtoast.success('A success toast')
+					mdtoast.success('A success toast', { position: getPosition()})
 				}
 			}
 
