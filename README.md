@@ -61,6 +61,7 @@ You can add options when calling `mdtoast()` to fit your needs. Below are the op
 | init        | `false`      | Determines if toast is initialize-only (meaning toast will not show unless `show()` is called |
 | duration    | `5000`       | Determines the toast display duration (in milliseconds). |
 | type        | `default`    | Determines the type of toast to display. Other types in `mdtoast`: `INFO`, `WARNING`, `SUCCESS`, `ERROR`. <br> Or you can just type these string values: `info`, `warning`, `success`, `error`. |
+| position    | `bottom left` | Determines the position of the toast on the screen. <br>Acceptable values: `top left`, `top center`, `top right`, `bottom left`, `bottom center`, `bottom right`.
 | modal       | `false`      | Determines if toast is modal (pointer events on other elements will be disabled). |
 | interaction | `false`      | Determines if toast requires user interaction to dismiss or has some sort of user interaction button to click. |
 | interactionTimeout | `null` | Determines the toast duration (timeout to dismiss) if `interaction` is set to `true`. This overrides the `duration` option if `interaction` is set to `true`. |
@@ -88,10 +89,21 @@ myToast.show();
 Different types of toast:
 ```javascript
 // Initializes different toasts with duration of 10 seconds
+// Info
 mdtoast('This is an info toast.', { duration: 10000, type: mdtoast.INFO });      // or type: 'info'
+mdtoast.info('This is an info toast.', { duration: 10000 });
+
+// Error
 mdtoast('This is an error toast.', { duration: 10000, type: mdtoast.ERROR });    // or type: 'error'
+mdtoast.error('This is an error toast.', { duration: 10000 });
+
+// Warning
 mdtoast('This is a warning toast.', { duration: 10000, type: mdtoast.WARNING }); // or type: 'warning'
+mdtoast.warning('This is a warning toast.', { duration: 10000 });
+
+// Success
 mdtoast('This is a success toast.', { duration: 10000, type: mdtoast.SUCCESS }); // or type: 'success'
+mdtoast.success('This is a success toast.', { duration: 10000 });
 ```
 
 Specifying toast action:
