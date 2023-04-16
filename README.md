@@ -119,7 +119,7 @@ mdtoast('Message archived.', {
 });
 ```
 
-### Vue
+### Vue 2
 In your `app.js`
 ```javascript
 import Vue from 'vue'
@@ -128,7 +128,20 @@ import vueToast from '@dmuy/toast/vue-toast'
 Vue.use(vueToast)
 ```
 
-#### Nuxt
+### Vue 3
+In your `app.js`
+```javascript
+import { createApp } from 'vue'
+import vueToast from '@dmuy/toast/vue3-toast'
+
+const app = createApp({
+  /* root component options */
+})
+
+app.use(vueToast)
+```
+
+### Nuxt
 In the `plugins` folder, create `mdtoast.js` and paste the script above.
 
 In `nuxt.config.js`
@@ -140,7 +153,7 @@ export default {
 }
 ```
 
-#### Usage
+### Usage (Nuxt, Vue 2, Vue 3 Options API)
 In your components or pages, you can access the `mdtoast()` as `this.$mdtoast()`
 ```javascript
 // script
@@ -151,6 +164,19 @@ export default {
     // with options
     this.$mdtoast('Message archived', { type: 'success' })
   }
+}
+```
+
+### Usage (Vue 3 Composition API)
+In your `<script setup>`
+```javascript
+import { inject } from 'vue'
+
+const mdtoast = inject('mdtoast')
+
+// then use like
+function toast(message) {
+  mdtoast('This is a toast message!')
 }
 ```
 
