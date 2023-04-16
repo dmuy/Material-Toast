@@ -22,7 +22,6 @@
   touch-action: auto;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   background-color: #323232;
   transform: translateY(0);
@@ -190,7 +189,6 @@
 body.mdtoast--modal {
   pointer-events: none;
   touch-action: none;
-  -ms-user-select: none;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
